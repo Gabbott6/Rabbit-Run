@@ -692,7 +692,14 @@ class GameScene extends Phaser.Scene {
     }
 
     setupInput() {
-        this.cursors = this.input.keyboard.createCursorKeys();
+        // Use addKey for arrow keys (more reliable than createCursorKeys)
+        this.cursors = {
+            up: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP),
+            down: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN),
+            left: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT),
+            right: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT),
+            space: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+        };
         this.wasd = {
             up: this.input.keyboard.addKey('W'),
             down: this.input.keyboard.addKey('S'),
