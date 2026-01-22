@@ -11,9 +11,10 @@ class BootScene extends Phaser.Scene {
         // Since we're using programmatic graphics, we just need to
         // simulate a brief loading time for effect
         this.load.on('complete', () => {
-            this.time.delayedCall(500, () => {
+            // Use setTimeout instead of this.time.delayedCall during preload
+            setTimeout(() => {
                 this.scene.start('MenuScene');
-            });
+            }, 500);
         });
 
         // Load a placeholder to trigger the loading system
@@ -73,9 +74,10 @@ class BootScene extends Phaser.Scene {
         particleGraphics.destroy();
 
         // Force completion after a brief delay
-        this.time.delayedCall(100, () => {
+        // Use setTimeout instead of this.time.delayedCall during preload
+        setTimeout(() => {
             this.load.emit('complete');
-        });
+        }, 100);
     }
 
     create() {
